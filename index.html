@@ -2,68 +2,42 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>格林威治：时间小偷</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>格林威治：时间小偷 V2.0 | Greenwich: Time Thief</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="scanline"></div>
-    <main class="app" id="appRoot">
-      <header class="topbar panel">
-        <div>
-          <h1>《格林威治：时间小偷》</h1>
-          <p class="subtitle">每一次挣扎，都是生命倒计时。</p>
+    <div id="crt-filter"></div>
+
+    <main id="app">
+      <header>
+        <div class="header-top">
+          <div class="location" id="ui-location">LOC: 格林威治 0 号</div>
+          <div class="location" id="ui-multiplier">FLOW: 1.00x</div>
         </div>
-        <div class="timebox">
-          <span>剩余寿命</span>
-          <strong id="timeDisplay">01:00:00</strong>
-          <small id="flowDisplay">流速 x1.00</small>
-        </div>
+        <div class="timer" id="ui-timer">01:00:00</div>
+        <div class="debuff-bar" id="ui-debuffs"></div>
       </header>
 
-      <section class="grid-layout">
-        <aside class="left panel">
-          <h2>区域地图（5x5）</h2>
-          <div id="map" class="map"></div>
-          <div class="area-meta">
-            <p><strong>当前位置：</strong><span id="areaName">生锈图书馆</span></p>
-            <p id="areaDesc">知识是有代价的，且往往无用。</p>
-            <p><strong>区域流速：</strong><span id="areaFlow">x1.0</span></p>
-          </div>
-          <button id="waitButton" class="danger">等待信号灯（120s）</button>
-        </aside>
-
-        <section class="center panel">
-          <h2>动作指令集</h2>
-          <div class="tabs" id="tabs"></div>
-          <div id="actions" class="actions"></div>
-
-          <div class="combat panel-inner hidden" id="combatBox">
-            <h3>⚠ 时钟野兽出现</h3>
-            <p id="combatText">它的齿轮咆哮，你听见秒针像利刃刮过骨头。</p>
-            <div class="combat-actions">
-              <button data-combat="overload">瞬时过载（500s）</button>
-              <button data-combat="lure">诱导转向（200s）</button>
-              <button data-combat="brawl">肉搏缠斗（实时扣10s/秒）</button>
-            </div>
-          </div>
-        </section>
-
-        <aside class="right panel">
-          <h2>机体状态</h2>
-          <ul id="statusList"></ul>
-          <h3>仓储容器</h3>
-          <ul id="inventory"></ul>
-          <h3>残影观察</h3>
-          <button id="echoButton">观察残影（100s）</button>
-          <p id="echoResult">暂无残影。</p>
-        </aside>
+      <section id="log-container" aria-live="polite">
+        <div class="log log-current">
+          系统初始化完毕。胸口齿轮开始咬合，你还有一小时存活时间。
+        </div>
       </section>
 
-      <section class="log panel">
-        <h2>叙事日志</h2>
-        <div id="log"></div>
+      <section id="system-lock" aria-hidden="true">
+        <div class="spinner"></div>
+        <div id="lock-msg">正在进行系统强检...</div>
       </section>
+
+      <nav class="action-tabs" aria-label="行为分类">
+        <button class="tab-btn active" data-tab="move">位移</button>
+        <button class="tab-btn" data-tab="maintain">维护</button>
+        <button class="tab-btn" data-tab="explore">探索</button>
+        <button class="tab-btn" data-tab="combat">战斗</button>
+      </nav>
+
+      <section id="action-grid"></section>
     </main>
 
     <script src="app.js"></script>
