@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>格林威治：时间小偷 V2.0 | Greenwich: Time Thief</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="crt-filter"></div>
+
+    <main id="app">
+      <header>
+        <div class="header-top">
+          <div class="location" id="ui-location">LOC: 格林威治 0 号</div>
+          <div class="location" id="ui-multiplier">FLOW: 1.00x</div>
+        </div>
+        <div class="timer" id="ui-timer">01:00:00</div>
+        <div class="debuff-bar" id="ui-debuffs"></div>
+      </header>
+
+      <section id="log-container" aria-live="polite">
+        <div class="log log-current">
+          系统初始化完毕。胸口齿轮开始咬合，你还有一小时存活时间。
+        </div>
+      </section>
+
+      <section id="system-lock" aria-hidden="true">
+        <div class="spinner"></div>
+        <div id="lock-msg">正在进行系统强检...</div>
+      </section>
+
+      <nav class="action-tabs" aria-label="行为分类">
+        <button class="tab-btn active" data-tab="move">位移</button>
+        <button class="tab-btn" data-tab="maintain">维护</button>
+        <button class="tab-btn" data-tab="explore">探索</button>
+        <button class="tab-btn" data-tab="combat">战斗</button>
+      </nav>
+
+      <section id="action-grid"></section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
